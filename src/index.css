@@ -1,0 +1,31 @@
+@import "tailwindcss";
+
+/* 👇 INI KUNCINYA: Memberitahu Tailwind v4 untuk menggunakan class 'dark', bukan preferensi OS */
+@custom-variant dark (&:where(.dark, .dark *));
+
+@layer base {
+  body {
+    /* Default (Light Mode) */
+    @apply bg-white text-slate-900;
+    /* Dark Mode (saat class 'dark' ada di <html>) */
+    @apply dark:bg-slate-900 dark:text-slate-100;
+    /* Animasi transisi yang halus */
+    @apply transition-colors duration-300 ease-in-out;
+  }
+}
+
+/* Custom scrollbar agar lebih rapi */
+@layer utilities {
+  ::-webkit-scrollbar {
+    width: 8px;
+  }
+  ::-webkit-scrollbar-track {
+    @apply bg-transparent;
+  }
+  ::-webkit-scrollbar-thumb {
+    @apply bg-slate-300 dark:bg-slate-700 rounded-full;
+  }
+  ::-webkit-scrollbar-thumb:hover {
+    @apply bg-slate-400 dark:bg-slate-600;
+  }
+}
