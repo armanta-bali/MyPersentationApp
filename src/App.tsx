@@ -127,7 +127,7 @@ function PresentationApp() {
         onToggleOverview={toggleOverview}
       />
 
-      <main className="pt-20 pb-24">
+      <main className="flex-1 pt-16 pb-20 md:pt-20 md:pb-24 px-4 md:px-8 flex flex-col justify-center">
         <SlideWrapper
           slideKey={slidesData[currentSlide].id}
           direction={direction}
