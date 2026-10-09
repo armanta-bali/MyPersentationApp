@@ -1,16 +1,20 @@
 import { motion, AnimatePresence } from "framer-motion";
-import type { ReactNode } from "react";
+import type { ReactNode } from "react"; // 👈 PERBAIKAN: Tambahkan 'type'
 
 interface SlideWrapperProps {
   children: ReactNode;
   slideKey: string;
   direction: "next" | "prev";
+  className?: string; // 👈 TAMBAHAN: Optional custom className
+  disableAnimation?: boolean; // 👈 TAMBAHAN: Optional disable animasi
 }
 
 export default function SlideWrapper({
   children,
   slideKey,
   direction,
+  className = "",
+  disableAnimation = false,
 }: SlideWrapperProps) {
   const variants = {
     enter: (direction: "next" | "prev") => ({
@@ -27,6 +31,11 @@ export default function SlideWrapper({
     }),
   };
 
+  // Jika animasi dinonaktifkan, render tanpa framer-motion
+  if (disableAnimation) {
+    return <div className={`w-full ${className}`}>{children}</div>;
+  }
+
   return (
     <AnimatePresence mode="wait" custom={direction}>
       <motion.div
@@ -40,7 +49,7 @@ export default function SlideWrapper({
           x: { type: "spring", stiffness: 300, damping: 30 },
           opacity: { duration: 0.2 },
         }}
-        className="w-full"
+        className={`w-full ${className}`}
       >
         {children}
       </motion.div>

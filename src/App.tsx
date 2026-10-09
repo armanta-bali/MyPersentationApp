@@ -96,7 +96,11 @@ function PresentationApp() {
     switch (slide.type) {
       case "intro":
         return (
-          <IntroSlide slide={slide} onOpenToc={() => setIsTocOpen(true)} />
+          <IntroSlide
+            slide={slide}
+            onOpenToc={() => setIsTocOpen(true)}
+            onNavigate={goToSlide}
+          />
         );
       case "content":
         return <ContentSlide slide={slide} />;
